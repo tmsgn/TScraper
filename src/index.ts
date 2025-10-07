@@ -8,6 +8,8 @@ const app = express();
 app.use(cors());
 const PORT = process.env.PORT ? Number(process.env.PORT) : 8080;
 
+app.get("/", (_req, res) => res.json({ ok: true }));
+
 app.get("/health", (_req, res) => res.json({ ok: true }));
 
 app.get("/movie/:tmdbId", async (req, res) => {

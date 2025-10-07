@@ -122,6 +122,7 @@ export async function scrapeProvider(targetUrl: string): Promise<string[]> {
   const launchArgs = [
     "--disable-setuid-sandbox",
     "--no-sandbox",
+    "--disable-dev-shm-usage",
     "--single-process",
     "--no-zygote",
     "--autoplay-policy=no-user-gesture-required",
@@ -180,6 +181,7 @@ export async function scrapeProviderWithSubtitles(
   const launchArgs = [
     "--no-sandbox",
     "--disable-setuid-sandbox",
+    "--disable-dev-shm-usage",
     "--autoplay-policy=no-user-gesture-required",
     "--mute-audio",
     "--ignore-certificate-errors",
@@ -187,7 +189,15 @@ export async function scrapeProviderWithSubtitles(
   ];
 
   try {
-    browser = await puppeteer.launch({ headless: true, args: launchArgs });
+    browser = await puppeteer.launch({
+      headless: true,
+      args: launchArgs,
+      executablePath:
+        process.env.NODE_ENV === "production"
+          ? process.env.PUPPETEER_EXECUTABLE_PATH
+          : puppeteer.executablePath(),
+      protocolTimeout: 60000,
+    });
     const page = await createPage(browser);
     attachNetworkCollectors(page, m3u8Urls, subUrls);
 
