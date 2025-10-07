@@ -9,9 +9,10 @@
     "build": "tsc -p tsconfig.json"
   },
   "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
     "express": "^4.19.2",
-    "puppeteer": "^22.15.0",
-    "cors": "^2.8.5"
+    "puppeteer": "^22.15.0"
   },
   "devDependencies": {
     "tsx": "^4.19.1",

@@ -11,6 +11,9 @@ importers:
       cors:
         specifier: ^2.8.5
         version: 2.8.5
+      dotenv:
+        specifier: ^17.2.3
+        version: 17.2.3
       express:
         specifier: ^4.19.2
         version: 4.21.2
@@ -384,6 +387,10 @@ packages:
 
   devtools-protocol@0.0.1312386:
     resolution: {integrity: sha512-DPnhUXvmvKT2dFA/j7B+riVLUt9Q6RKJlcppojL5CoRywJJKLDYnRlw0gTFKfgDPHP5E04UoB71SxoJlVZy8FA==}
+
+  dotenv@17.2.3:
+    resolution: {integrity: sha512-JVUnt+DUIzu87TABbhPmNfVdBDt18BLOWjMUFJMSi/Qqg7NTYtabbvSNJGOJ7afbRuv9D/lngizHtP7QyLQ+9w==}
+    engines: {node: '>=12'}
 
   dunder-proto@1.0.1:
     resolution: {integrity: sha512-KIN/nDJBQRcXw0MLVhZE9iQHmG68qAVIBg9CqmUYjmQIhgij9U5MFvrqkUL5FbtyyzZuOeOt0zdeRe4UY7ct+A==}
@@ -1169,6 +1176,8 @@ snapshots:
   destroy@1.2.0: {}
 
   devtools-protocol@0.0.1312386: {}
+
+  dotenv@17.2.3: {}
 
   dunder-proto@1.0.1:
     dependencies:
