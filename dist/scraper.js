@@ -1,3 +1,4 @@
+import "dotenv/config";
 import puppeteer from "puppeteer";
 function isM3U8(url) {
     return /\.m3u8(\?|$)/i.test(url);
@@ -112,15 +113,23 @@ export async function scrapeProvider(targetUrl) {
     const PASSIVE_WAIT_MS = 6000;
     const CLICK_WAIT_MS = 8000;
     const launchArgs = [
-        "--no-sandbox",
         "--disable-setuid-sandbox",
+        "--no-sandbox",
+        "--single-process",
+        "--no-zygote",
         "--autoplay-policy=no-user-gesture-required",
         "--mute-audio",
         "--ignore-certificate-errors",
         "--allow-running-insecure-content",
     ];
     try {
-        browser = await puppeteer.launch({ headless: true, args: launchArgs });
+        browser = await puppeteer.launch({
+            headless: true,
+            args: launchArgs,
+            executablePath: process.env.NODE_ENV === "production"
+                ? process.env.PUPPETEER_EXECUTABLE_PATH
+                : puppeteer.executablePath(),
+        });
         const page = await createPage(browser);
         attachNetworkCollectors(page, m3u8Urls, subUrls);
         await page.goto(targetUrl, {

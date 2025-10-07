@@ -1,8 +1,8 @@
 FROM ghcr.io/puppeteer/puppeteer:22.15.0
 
 # Use Chrome baked into the Puppeteer image
-ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
-    PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome-stable \
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+    PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome-stable 
     NODE_ENV=production
 
 WORKDIR /usr/src/app
